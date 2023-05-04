@@ -19,19 +19,29 @@ export default {
   },
   methods:{
     getApi(){
-      axios.get(store.apiUrl,{
-        params:{
-          original_title: store.titleToSearch,
-        }
-      })
-      .then(result => {
-        store.filmList = result.data.results
-        
-        console.log(store.titleToSearch);
 
-        console.log(store.filmList);
+      axios.get(store.apiUrl, {
+        params:{
+          query: store.titleToSearch,
+          media_type: store.choseMediaType,
+        }
         
       })
+        .then(result => {
+          console.log('Titolo cercato:', store.titleToSearch);
+          store.filmList = result.data.results
+          console.log('Nuovo elenco per titolo cercato', store.filmList);
+          /*
+          if(store.listMediaType.length === 0){
+            store.filmList.forEach(element =>{
+              if(!store.listMediaType.includes(element.media_type)){
+                store.listMediaType.push(element.media_type)
+              }
+              console.log('Lista tipi',store.listMediaType);
+            })
+          }
+          */
+        })
     }
   },
   mounted(){

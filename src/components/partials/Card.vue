@@ -5,7 +5,7 @@ export default {
     title: String,
     original_title: String,
     original_language: String,
-    vote_average: String,
+    vote_average: Number,
   }
 
 }

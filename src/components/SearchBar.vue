@@ -1,5 +1,6 @@
 <script>
 import {store} from '../data/store'
+
 export default {
   name: 'SearchBar',
   data(){
@@ -7,7 +8,6 @@ export default {
       store
     }
   }
-
 }
 </script>
 
@@ -21,13 +21,18 @@ export default {
     <div class="search_bar d-flex align-items-center">
 
       <div class="me-3">
-        <input type="text" v-model.trim="store.titleToSearch" class="form-control" id="exampleFormControlInput1" placeholder="Cerca qui">
+        <input v-model.trim="store.titleToSearch" type="text" class="form-control" placeholder="Cerca qui il titolo">
       </div>
 
-      <select class="form-select" aria-label="Default select example">
-        <option value="1" selected>All</option>
-        <option value="2">Film</option>
-        <option value="3">Serie TV</option>
+      <select v-model="store.choseMediaType" class="form-select" aria-label="Default select example">
+
+        <option value="" selected>All</option>
+        <option 
+          v-for="media_type in store.listMediaType"
+          :key="media_type" 
+          :value="media_type"
+          
+        >{{media_type}}</option>
       </select>
 
       <button type="button" class="btn btn-primary mx-4" @click="$emit('startSearch')">SEARCH</button>
