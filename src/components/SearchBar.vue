@@ -1,13 +1,14 @@
-<template>
-  
-</template>
-
 <script>
 export default {
+  name: 'SearchBar'
 
 }
 </script>
 
-<style>
+<template>
+  
+</template>
+
+<style lang="scss" scoped>
 
 </style>

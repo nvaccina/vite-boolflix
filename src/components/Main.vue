@@ -1,13 +1,14 @@
-<template>
-  
-</template>
-
 <script>
 export default {
+  name: 'Main',
 
 }
 </script>
 
-<style>
+<template>
+  
+</template>
+
+<style lang="scss" scoped>
 
 </style>
