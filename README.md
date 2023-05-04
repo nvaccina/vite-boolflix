@@ -8,3 +8,4 @@
 - Creare funzione getApi;
 - Creare la card con le informazioni base dei film;
 - Collegamento testo input con la ricerca dei film;
+- Aggiunta flags;

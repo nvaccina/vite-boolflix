@@ -23,14 +23,16 @@ export default {
       axios.get(store.apiUrl, {
         params:{
           query: store.titleToSearch,
-          media_type: store.choseMediaType,
+          //media_type: store.choseMediaType,
         }
         
       })
         .then(result => {
+          
+          store.filmList = result.data.results;
           console.log('Titolo cercato:', store.titleToSearch);
-          store.filmList = result.data.results
           console.log('Nuovo elenco per titolo cercato', store.filmList);
+
           /*
           if(store.listMediaType.length === 0){
             store.filmList.forEach(element =>{
@@ -39,13 +41,13 @@ export default {
               }
               console.log('Lista tipi',store.listMediaType);
             })
-          }
-          */
+          }*/
+          
         })
     }
   },
   mounted(){
-    this.getApi();
+    this.getApi()
   }
 
 }

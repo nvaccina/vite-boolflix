@@ -7,7 +7,8 @@ export default {
     return{
       store
     }
-  }
+  },
+  
 }
 </script>
 
@@ -24,15 +25,12 @@ export default {
         <input v-model.trim="store.titleToSearch" type="text" class="form-control" placeholder="Cerca qui il titolo">
       </div>
 
-      <select v-model="store.choseMediaType" class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example">
 
-        <option value="" selected>All</option>
-        <option 
-          v-for="media_type in store.listMediaType"
-          :key="media_type" 
-          :value="media_type"
-          
-        >{{media_type}}</option>
+        <option value="All" selected>All</option>
+        <option value="Movie" >Movie</option>
+        <option value="Tv" >Tv</option>
+        
       </select>
 
       <button type="button" class="btn btn-primary mx-4" @click="$emit('startSearch')">SEARCH</button>
