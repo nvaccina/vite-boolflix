@@ -16,14 +16,34 @@ export default {
     return{
       store,
     }
+  },
+  methods:{
+    getApi(){
+      axios.get(store.apiUrl,{
+        params:{
+          original_title: store.titleToSearch,
+        }
+      })
+      .then(result => {
+        store.filmList = result.data.results
+        
+        console.log(store.titleToSearch);
+
+        console.log(store.filmList);
+        
+      })
+    }
+  },
+  mounted(){
+    this.getApi();
   }
 
 }
 </script>
 
 <template>
-  
-  <SearchBar/>
+
+  <SearchBar @startSearch="getApi"/>
 
   <Main/>
   
