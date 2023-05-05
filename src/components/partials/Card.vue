@@ -20,17 +20,30 @@ export default {
 
 <template>
   <div class="nv_card">
-    <h3>{{ title }}</h3>
-    <h4>{{ original_title }}</h4>
+    <!--Mostra title se film, name se serie tv-->
+    <h3>
+      <span v-if="title">Film: {{ title }}</span>
+      <span v-else>Serie Tv: {{ name }}</span>
+    </h3>
+
+    <!--Se original_title diverso da title || original_name diverso da name, mostra i titoli originali-->
+    <h4 v-if="original_title !== title || original_name !== name">
+
+      <span v-if="original_title">{{ original_title }}</span>
+      <span v-else>{{ original_name }}</span>
+
+    </h4>
+
+    <!--Flag con immagine: se l'immagine è nulla, mostra testo lingua-->
     <p class="fleg d-flex align-items-center">
       Language:
-
-      <span v-if="flag === null"> {{ original_language }}</span>
-
-      <img class="ms-2" v-else :src="flag" :alt="original_language">
       
+      <img class="ms-2" v-if="flag !== null" :src="flag" :alt="original_language">
 
+      <span v-else> {{ original_language }}</span>
+      
     </p>
+    
     <p>{{ vote_average }}</p>
 
 

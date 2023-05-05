@@ -20,6 +20,10 @@ export default {
 </script>
 
 <template>
+
+  <h1>Film</h1>
+
+  <!--Contenitore film-->
   
   <div class="container d-flex flex-wrap">
 
@@ -28,8 +32,28 @@ export default {
       :key="film.id"
       :title="film.title"
       :original_title="film.original_title"
+      
       :original_language="film.original_language"
       :vote_average="film.vote_average"
+    />
+
+  </div>
+
+  <h1>Serie TV</h1>
+
+  <!--Contenitore serie tv-->
+
+  <div class="container d-flex flex-wrap">
+    
+
+    <Card
+      v-for="serie in store.serieList"
+      :key="serie.id"
+
+      :name="serie.name"
+      :original_name="serie.original_name"
+      :original_language="serie.original_language"
+      :vote_average="serie.vote_average"
     />
 
   </div>

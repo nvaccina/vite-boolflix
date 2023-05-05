@@ -20,10 +20,9 @@ export default {
   methods:{
     getApi(){
 
-      axios.get(store.apiUrl, {
+      axios.get(store.apiUrlFilm, {
         params:{
           query: store.titleToSearch,
-          //media_type: store.choseMediaType,
         }
         
       })
@@ -33,15 +32,19 @@ export default {
           console.log('Titolo cercato:', store.titleToSearch);
           console.log('Nuovo elenco per titolo cercato', store.filmList);
 
-          /*
-          if(store.listMediaType.length === 0){
-            store.filmList.forEach(element =>{
-              if(!store.listMediaType.includes(element.media_type)){
-                store.listMediaType.push(element.media_type)
-              }
-              console.log('Lista tipi',store.listMediaType);
-            })
-          }*/
+        })
+      axios.get(store.apiUrlTv, {
+        params:{
+          query: store.titleToSearch,
+          
+        }
+        
+      })
+        .then(result => {
+          
+          store.serieList = result.data.results;
+          console.log('Titolo cercato:', store.titleToSearch);
+          console.log('Nuovo elenco per titolo cercato', store.serieList);
           
         })
     }
