@@ -1,0 +1,8 @@
+@use "./variables" as *;
+
+body{
+  background: linear-gradient(to bottom, #252a29, #69706f42 35%, #69706fea 70%)
+}
+h1, h2, h3, h4, h5, h6{
+  color: $primary-color;
+}

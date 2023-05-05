@@ -21,41 +21,46 @@ export default {
 
 <template>
 
-  <h1>Film</h1>
-
   <!--Contenitore film-->
   
-  <div class="container d-flex flex-wrap">
+  <div class="container">
+    <h1>Film</h1>
+    <div class="card_container d-flex flex-wrap">
 
-    <Card
-      v-for="film in store.filmList"
-      :key="film.id"
-      :title="film.title"
-      :original_title="film.original_title"
-      :original_language="film.original_language"
-      :image="film.poster_path"
-      :vote_average="film.vote_average"
-    />
+      <Card
+        v-for="film in store.filmList"
+        :key="film.id"
+        :title="film.title"
+        :original_title="film.original_title"
+        :original_language="film.original_language"
+        :image="film.poster_path"
+        :vote_average="Math.ceil(film.vote_average / 2)"
+        :overview="film.overview"
+      />
+
+    </div>
 
   </div>
 
-  <h1>Serie TV</h1>
-
   <!--Contenitore serie tv-->
+  <div class="container ">
+    <h1>Serie TV</h1>
 
-  <div class="container d-flex flex-wrap">
+    <div class="card_container d-flex flex-wrap">
+
+      <Card
+        v-for="serie in store.serieList"
+        :key="serie.id"
+        :name="serie.name"
+        :original_name="serie.original_name"
+        :original_language="serie.original_language"
+        :vote_average="Math.ceil(serie.vote_average / 2)"
+        :image="serie.backdrop_path"
+        :overview="serie.overview"
+      />
+
+    </div>
     
-
-    <Card
-      v-for="serie in store.serieList"
-      :key="serie.id"
-      :name="serie.name"
-      :original_name="serie.original_name"
-      :original_language="serie.original_language"
-      :vote_average="serie.vote_average"
-      :image="serie.backdrop_path"
-    />
-
   </div>
   
   

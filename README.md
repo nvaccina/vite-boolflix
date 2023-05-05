@@ -11,3 +11,5 @@
 - Aggiunta flags in base a language;
 - Aggiunta chiamata per serie tv e card serie tv;
 - Aggiunte img di copertina e img alternativa se la copertina non è presente;
+- Aggiunte stelline in base ai voti;
+- Aggiunto effetto per far comparie info film/serie;
