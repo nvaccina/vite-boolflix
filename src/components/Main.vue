@@ -32,7 +32,6 @@ export default {
       :key="film.id"
       :title="film.title"
       :original_title="film.original_title"
-      
       :original_language="film.original_language"
       :vote_average="film.vote_average"
     />
@@ -49,7 +48,6 @@ export default {
     <Card
       v-for="serie in store.serieList"
       :key="serie.id"
-
       :name="serie.name"
       :original_name="serie.original_name"
       :original_language="serie.original_language"

@@ -20,32 +20,31 @@ export default {
   methods:{
     getApi(){
 
+      //Chiamata axios film
       axios.get(store.apiUrlFilm, {
         params:{
+          api_key: store.api_key,
           query: store.titleToSearch,
         }
-        
       })
         .then(result => {
-          
           store.filmList = result.data.results;
           console.log('Titolo cercato:', store.titleToSearch);
-          console.log('Nuovo elenco per titolo cercato', store.filmList);
-
+          console.log('Nuovo elenco film', store.filmList);
         })
+
+      //Chiamata axios serie tv
       axios.get(store.apiUrlTv, {
         params:{
+          api_key: store.api_key,
           query: store.titleToSearch,
           
         }
-        
       })
         .then(result => {
-          
           store.serieList = result.data.results;
           console.log('Titolo cercato:', store.titleToSearch);
-          console.log('Nuovo elenco per titolo cercato', store.serieList);
-          
+          console.log('Nuovo elenco serie', store.serieList);
         })
     }
   },
