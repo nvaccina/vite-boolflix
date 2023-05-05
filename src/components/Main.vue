@@ -33,6 +33,7 @@ export default {
       :title="film.title"
       :original_title="film.original_title"
       :original_language="film.original_language"
+      :image="film.poster_path"
       :vote_average="film.vote_average"
     />
 
@@ -52,6 +53,7 @@ export default {
       :original_name="serie.original_name"
       :original_language="serie.original_language"
       :vote_average="serie.vote_average"
+      :image="serie.backdrop_path"
     />
 
   </div>

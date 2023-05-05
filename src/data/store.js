@@ -12,7 +12,7 @@ export const store = reactive ({
   filmList: [],
   serieList: [],
   choseFilm: [],
-  titleToSearch: 'Anna',
+  titleToSearch: 'Annabel',
   //listMediaType: [],
   filmMediaType: 'movie',
 

@@ -10,3 +10,4 @@
 - Collegamento testo input con la ricerca dei film;
 - Aggiunta flags in base a language;
 - Aggiunta chiamata per serie tv e card serie tv;
+- Aggiunte img di copertina e img alternativa se la copertina non è presente;
