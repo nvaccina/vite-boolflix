@@ -90,7 +90,6 @@ export default {
   width: calc(100% / 4 - 20px);
   margin: 0 10px;
   margin-bottom: 20px;
-  border: 2px solid black;
   overflow: hidden;
   cursor: pointer;
   &:hover{
@@ -136,8 +135,6 @@ export default {
     padding: 5px;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
-
-    
     .fleg{
       img{
         width: 30px;

@@ -13,3 +13,5 @@
 - Aggiunte img di copertina e img alternativa se la copertina non è presente;
 - Aggiunte stelline in base ai voti;
 - Aggiunto effetto per far comparie info film/serie;
+- Aggiunto Header per contenere menu e searchbar;
+- Aggiunto reset per movie e serie tv;

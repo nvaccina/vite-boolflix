@@ -8,34 +8,44 @@ export default {
       store
     }
   },
+  methods:{
+    //Reset
+    reset(){
+      store.filmList = [];
+      store.serieList = [];
+      fullUrl = store.baseUrl;
+      this.$emit('startSearch')
+    }
+  }
   
 }
 </script>
 
 <template>
 
-  <div class="container d-flex justify-content-between align-items-center">
-    <div class="logo">
-      <a href="#">LOGO</a>
-    </div>
+  <div class="search_bar d-flex align-items-center">
 
-    <div class="search_bar d-flex align-items-center">
-
-      <div class="me-3">
-        <input v-model.trim="store.titleToSearch" type="text" class="form-control" placeholder="Cerca qui il titolo">
-      </div>
-
-      <select class="form-select" aria-label="Default select example">
-
-        <option value="All" selected>All</option>
-        <option value="Movie" >Movie</option>
-        <option value="Tv" >Tv</option>
-        
-      </select>
-
-      <button type="button" class="btn btn-primary mx-4" @click="$emit('startSearch')">SEARCH</button>
+    <div class="me-3">
+      <input 
+        v-model.trim="store.titleToSearch" 
+        type="text" 
+        class="form-control" 
+        placeholder="Cerca qui il titolo"
+        @keyup.enter="$emit('startSearch')"
+      >
 
     </div>
+
+    <select class="form-select" v-model="store.type" aria-label="Default select example">
+
+      <option @change="reset" value="All" selected>All</option>
+      <option @change="reset" value="Movie" >Movie</option>
+      <option @change="reset" value="Tv" >Tv</option>
+      
+    </select>
+
+    <button type="button" class="btn btn-primary mx-4" @click="$emit('startSearch'), reset()">SEARCH</button>
+
   </div>
   
 </template>
@@ -43,12 +53,11 @@ export default {
 <style lang="scss" scoped>
 
 .search_bar{
-  height: 100px;
   .form-control{
     width: 300px;
   }
   .form-select{
-    width: 200px;
+    width: 100px;
   }
 }
   
