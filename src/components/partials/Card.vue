@@ -38,7 +38,7 @@ export default {
       <h3>{{ title || name }}</h3>
 
       <!--Se original_title diverso da title || original_name diverso da name, mostra i titoli originali-->
-      <h5 v-if="original_title !== title || original_name !== name">
+      <h5 class="titolo_originale" v-if="original_title !== title || original_name !== name">
         {{ original_title || original_name }}
       </h5>
 
@@ -64,7 +64,9 @@ export default {
       </div>
 
       <!--Descrizione-->
-      <p class="descrizione">{{overview}}</p>
+      <div class="descrizione">
+        <p>{{overview}}</p>
+      </div>
 
     </div>
     
@@ -91,6 +93,12 @@ export default {
       animation-duration: 0.4s;	
       animation-timing-function: linear;
       top:0;
+      .titolo_originale{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+      }
     }
     @keyframes compare_testo {
       0% {
@@ -109,6 +117,7 @@ export default {
         transform: translateY(0%);
       }	
     }
+    
   }
   img{
     object-fit: cover;
@@ -141,8 +150,19 @@ export default {
     color:yellow
   }
   .descrizione{
-    max-height: 350px;
-    //overflow: scroll;
+    height: 100%;
+    //max-height: 250px;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+      width: 5px;
+      background-color: #ccc;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #f6f7f8;
+      border-radius: 10px;
+    }
   }
 }
 </style>

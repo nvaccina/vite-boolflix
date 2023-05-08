@@ -2,7 +2,6 @@
 import SearchBar from './SearchBar.vue';
 import {store} from '../data/store'
 
-
 export default {
   name: "Header",
   components: { 
@@ -30,8 +29,6 @@ export default {
 
   </header>
 
-
-
 </template>
 
 <style lang="scss" scoped>
@@ -44,7 +41,6 @@ header{
   z-index: 999;
   width: 100vw;
 }
-
 .nv_container{
   width: 80%;
   margin: 0 auto;

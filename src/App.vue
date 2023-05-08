@@ -5,12 +5,14 @@ import {store} from './data/store'
 
 import Header from './components/Header.vue'
 import Main from './components/Main.Vue'
+import Loader from './components/partials/Loader.vue'
 
 export default {
   name: 'App',
   components:{
     Header,
-    Main
+    Main,
+    Loader
   },
   data(){
     return{
@@ -18,49 +20,88 @@ export default {
     }
   },
   methods:{
+    //getApi per prendere film e serie tv insieme
+    getApiAll(){
+      let URL1 = store.filmUrl
+      let URL2 = store.tvUrl
+
+      const promise1 = axios.get(URL1, {
+        params:{
+          api_key: store.api_key,
+          query: store.titleToSearch,
+          language: store.language,
+          page: store.page,
+        }
+      });
+      const promise2 = axios.get(URL2, {
+        params:{
+          api_key: store.api_key,
+          query: store.titleToSearch,
+          language: store.language,
+          page: store.page,
+        }
+      });
+
+      Promise.all([promise1, promise2]).then(function(result) {
+        console.log('result oggetto doppio',result);
+
+        store.filmList = result[0].data.results;
+        console.log('result oggetto film',store.filmList);
+
+        store.serieList = result[1].data.results;
+        console.log('result oggetto tv',store.serieList);
+        store.isLoading = false;
+
+
+      }).catch(error => console.log(error));
+
+    },
+    //getApi generale per tutti
     getApi(){
+      store.isLoading = true;
 
       let fullUrl = store.baseUrl;
 
-      if (store.type === 'All') {
-        fullUrl += 'movie?';
-        fullUrl += 'tv?';
+      if (store.type === 'movie') {
+        fullUrl += 'search/movie?';
 
-      } else if (store.type === 'Movie') {
-        fullUrl += 'movie?';
-
-      } else if (store.type === 'Tv') {
-        fullUrl += 'tv?';
+      } else if (store.type === 'tv') {
+        fullUrl += 'search/tv?';
+      } else if(store.type === 'all'){
+        this.getApiAll()
+        return ;
       }else{
-        fullUrl += 'movie/popular?';
+        fullUrl += 'movie/popular';
       }
+
+      console.log(fullUrl);
+      console.log(store.api_key);
+      console.log(store.titleToSearch);
+      console.log(store.language);
+      console.log(store.page);
 
       //Chiamata axios
       axios.get(fullUrl, {
         params:{
           api_key: store.api_key,
-          query: store.titleToSearch,
           language: store.language,
+          query: store.titleToSearch,
+          page: store.page,
         }
       })
         .then(result => {
-          if(store.type === 'All'){
-
+          if (store.type === 'movie') {
             store.filmList = result.data.results;
-            console.log('film',store.filmList);
 
+          } else if (store.type === 'tv') {
             store.serieList = result.data.results;
-            console.log('serie', store.serieList);
-
-          }else if (store.type === 'Movie') {
-            store.filmList = result.data.results;
-
-          } else if (store.type === 'Tv') {
-            store.serieList = result.data.results;
-          }else{
-            store.filmList = result.data.results;
+            
           }
-          console.log('Titolo cercato:', store.titleToSearch);
+          else{
+            (store.filmList = result.data.results)
+          } 
+          store.isLoading = false;
+          
         })
         
         .catch(error=>{
@@ -68,26 +109,9 @@ export default {
           store.serieList = [];
         })
     },
-    //chiamata popular
-    getApiPopular(){
-      axios.get(store.popularUrl, {
-        params:{
-          api_key: store.api_key,
-          query: store.titleToSearch,
-          language: store.language,
-        }
-      })
-        .then(result => {
-            store.filmList = result.data.results;
-            console.log('film',store.filmList);
-        })
-
-    }
   },
   mounted(){
     this.getApi();
-    //chiamata popular
-    this.getApiPopular()
   }
 
 }
@@ -95,10 +119,11 @@ export default {
 
 <template>
 
-
   <Header @restartSearch="getApi" />
 
-  <Main/>
+  <Loader v-if="store.isLoading"/>
+
+  <Main v-else @gotonextprev="getApi"/>
   
 </template>
 

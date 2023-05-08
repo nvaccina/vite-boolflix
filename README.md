@@ -16,3 +16,6 @@
 - Aggiunto Header per contenere menu e searchbar;
 - Aggiunto reset per movie e serie tv;
 - Aggiunte condizioni per mostrare messaggio 'Nessun elemento trovato';
+- Aggiunto collegamento opzione 'All' (per serie e film insieme);
+- Impostati film popular come default all'apertuta;
+- Aggiunti pulsanti next-prev per cambiare pagina

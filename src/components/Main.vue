@@ -13,6 +13,12 @@ export default {
     return{
       store
     }
+  },
+  methods:{
+    nextPrev(){
+      console.log('pagina',store.page);
+      this.$emit('gotonextprev');
+    }
   }
 
 }
@@ -28,7 +34,15 @@ export default {
 
     <div class="container my-4">
 
-      <h1 v-if="store.filmList.length>0" class="pb-3">Film</h1>
+      <div v-if="store.filmList.length>0" class="d-flex align-items-center">
+        <h1 class="pb-3">Film</h1>
+
+        <button v-if="store.page > 1" type="button" class="btn btn-outline-light" @click="nextPrev(store.page--)">Prev</button>
+        <button  type="button" class="btn btn-outline-light" @click="nextPrev(store.page++)">Next</button>
+
+      </div>
+
+      
 
       <div class="card_container d-flex flex-wrap">
 
