@@ -23,11 +23,16 @@ export default {
       let fullUrl = store.baseUrl;
 
       if (store.type === 'All') {
-        fullUrl += 'search/multi?';
+        fullUrl += 'movie?';
+        fullUrl += 'tv?';
+
       } else if (store.type === 'Movie') {
-        fullUrl += 'search/movie?';
+        fullUrl += 'movie?';
+
       } else if (store.type === 'Tv') {
-        fullUrl += 'search/tv?';
+        fullUrl += 'tv?';
+      }else{
+        fullUrl += 'movie/popular?';
       }
 
       //Chiamata axios
@@ -35,27 +40,54 @@ export default {
         params:{
           api_key: store.api_key,
           query: store.titleToSearch,
+          language: store.language,
         }
       })
         .then(result => {
           if(store.type === 'All'){
-            console.log('Ciao a tutti');
+
+            store.filmList = result.data.results;
+            console.log('film',store.filmList);
+
+            store.serieList = result.data.results;
+            console.log('serie', store.serieList);
 
           }else if (store.type === 'Movie') {
             store.filmList = result.data.results;
+
           } else if (store.type === 'Tv') {
             store.serieList = result.data.results;
+          }else{
+            store.filmList = result.data.results;
           }
           console.log('Titolo cercato:', store.titleToSearch);
         })
+        
         .catch(error=>{
           store.filmList = [];
           store.serieList = [];
         })
+    },
+    //chiamata popular
+    getApiPopular(){
+      axios.get(store.popularUrl, {
+        params:{
+          api_key: store.api_key,
+          query: store.titleToSearch,
+          language: store.language,
+        }
+      })
+        .then(result => {
+            store.filmList = result.data.results;
+            console.log('film',store.filmList);
+        })
+
     }
   },
   mounted(){
-    this.getApi()
+    this.getApi();
+    //chiamata popular
+    this.getApiPopular()
   }
 
 }

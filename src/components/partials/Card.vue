@@ -30,23 +30,16 @@ export default {
     <div v-else class="alternative_card w-100 h-100">
       <h5>{{ title || name }}</h5>
       <img src="../../../public/img/anteprima-non-disponibile.jpg" alt="Immagine non disponibile" class="w-100 h-100">
-
     </div>
     
-    
-
-    <div class="text w-100 h-100">
+    <div class="text w-100 h-100 p-2">
 
       <!--Mostra title se film, name se serie tv-->
-      <h3>
-        <span v-if="title">{{ title }}</span>
-        <span v-else>{{ name }}</span>
-      </h3>
+      <h3>{{ title || name }}</h3>
 
       <!--Se original_title diverso da title || original_name diverso da name, mostra i titoli originali-->
       <h5 v-if="original_title !== title || original_name !== name">
-        <span v-if="original_title">{{ original_title }}</span>
-        <span v-else>{{ original_name }}</span>
+        {{ original_title || original_name }}
       </h5>
 
       <!--Flag con immagine: se l'immagine è nulla, mostra testo lingua-->
@@ -71,7 +64,7 @@ export default {
       </div>
 
       <!--Descrizione-->
-      <p>{{overview}}</p>
+      <p class="descrizione">{{overview}}</p>
 
     </div>
     
@@ -132,10 +125,10 @@ export default {
   }
   .text{
     position: absolute;
-    padding: 5px;
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
     .fleg{
+      margin-left: 0 !important;
       img{
         width: 30px;
       }
@@ -146,6 +139,10 @@ export default {
   }
   i{
     color:yellow
+  }
+  .descrizione{
+    max-height: 350px;
+    //overflow: scroll;
   }
 }
 </style>

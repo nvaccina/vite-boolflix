@@ -24,11 +24,12 @@ export default {
 
   <!--Contenitore film-->
 
-  <h2 v-if="store.titleToSearch = '' & store.filmList.length === 0 & store.serieList.length === 0">Cerca un nuovo film!</h2>
-
   <div v-if="store.filmList.length>0 || store.serieList.length>0" class="nv_main_container">
+
     <div class="container my-4">
-      <h1 class="pb-3">Film</h1>
+
+      <h1 v-if="store.filmList.length>0" class="pb-3">Film</h1>
+
       <div class="card_container d-flex flex-wrap">
 
         <Card
@@ -49,7 +50,7 @@ export default {
     <!--Contenitore serie tv-->
     
     <div class="container my-4">
-      <h1 class="pb-3">Serie TV</h1>
+      <h1 v-if="store.serieList.length>0" class="pb-3">Serie TV</h1>
 
       <div class="card_container d-flex flex-wrap">
 
@@ -70,14 +71,19 @@ export default {
 
   </div>
   
-    
 
-  <div v-else class="container text-center">
-    <h6>Non sono stati trovati film con questo titolo</h6>
+  <div v-else class="not_found container text-center">
+    <h4>Non sono stati trovati film/serie tv con questo titolo!</h4>
   </div>
   
 </template>
 
 <style lang="scss" scoped>
+.nv_main_container{
+  margin-top: 120px;
+}
+.not_found{
+  margin-top: 120px;
+}
 
 </style>

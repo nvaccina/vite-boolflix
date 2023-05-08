@@ -8,13 +8,12 @@ export default {
       store
     }
   },
+  
   methods:{
     //Reset
     reset(){
       store.filmList = [];
       store.serieList = [];
-      fullUrl = store.baseUrl;
-      this.$emit('startSearch')
     }
   }
   
@@ -38,9 +37,9 @@ export default {
 
     <select class="form-select" v-model="store.type" aria-label="Default select example">
 
-      <option @change="reset" value="All" selected>All</option>
-      <option @change="reset" value="Movie" >Movie</option>
-      <option @change="reset" value="Tv" >Tv</option>
+      <option value="All" selected>All</option>
+      <option value="Movie" >Movie</option>
+      <option value="Tv" >Tv</option>
       
     </select>
 
@@ -58,6 +57,15 @@ export default {
   }
   .form-select{
     width: 100px;
+  }
+  button{
+    background-color: red;
+    border: 0;
+    font-weight: bold;
+    &:active{
+      background-color: white;
+      color: red;
+    }
   }
 }
   

@@ -15,3 +15,4 @@
 - Aggiunto effetto per far comparie info film/serie;
 - Aggiunto Header per contenere menu e searchbar;
 - Aggiunto reset per movie e serie tv;
+- Aggiunte condizioni per mostrare messaggio 'Nessun elemento trovato';
