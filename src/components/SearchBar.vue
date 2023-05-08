@@ -38,9 +38,10 @@ export default {
     </div>
 
     <select class="form-select" v-model="store.type" aria-label="Default select example">
-      <option value="all">All</option>
+      <option value="all" selected>All</option>
       <option value="movie" >Movie</option>
       <option value="tv" >Tv</option>
+      <option value="popular_movie">Popular Movie</option>
       
     </select>
 
@@ -57,7 +58,8 @@ export default {
     width: 300px;
   }
   .form-select{
-    width: 100px;
+    width: 135px;
+    cursor: pointer;
   }
   button{
     background-color: red;

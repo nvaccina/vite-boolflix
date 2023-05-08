@@ -13,7 +13,7 @@ export default {
   },
   data(){
     return{
-      flag: `./img/${this.original_language}.png`,
+      flag: `./img/flags/${this.original_language}.svg`,
     }
   }
 
@@ -156,11 +156,11 @@ export default {
     &::-webkit-scrollbar{
       width: 5px;
       background-color: #ccc;
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
       border-radius: 10px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: #f6f7f8;
+      background-color: white;
       border-radius: 10px;
     }
   }

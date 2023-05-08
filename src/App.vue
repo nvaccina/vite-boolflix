@@ -74,12 +74,6 @@ export default {
         fullUrl += 'movie/popular';
       }
 
-      console.log(fullUrl);
-      console.log(store.api_key);
-      console.log(store.titleToSearch);
-      console.log(store.language);
-      console.log(store.page);
-
       //Chiamata axios
       axios.get(fullUrl, {
         params:{
@@ -92,13 +86,15 @@ export default {
         .then(result => {
           if (store.type === 'movie') {
             store.filmList = result.data.results;
+            store.titleList = 'Movie';
 
           } else if (store.type === 'tv') {
             store.serieList = result.data.results;
             
           }
           else{
-            (store.filmList = result.data.results)
+            (store.filmList = result.data.results);
+            store.titleList = 'Popular Movie';
           } 
           store.isLoading = false;
           

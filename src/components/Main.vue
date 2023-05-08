@@ -34,11 +34,12 @@ export default {
 
     <div class="container my-4">
 
-      <div v-if="store.filmList.length>0" class="d-flex align-items-center">
-        <h1 class="pb-3">Film</h1>
+      <div v-if="store.filmList.length>0" class="d-flex align-items-center pb-3">
+        
+        <h1>{{ store.titleList }}</h1>
 
-        <button v-if="store.page > 1" type="button" class="btn btn-outline-light" @click="nextPrev(store.page--)">Prev</button>
-        <button  type="button" class="btn btn-outline-light" @click="nextPrev(store.page++)">Next</button>
+        <button v-if="store.page > 1" type="button" class="nv_btn ms-3" @click="nextPrev(store.page--)">Prev</button>
+        <button type="button" class="nv_btn mx-3" @click="nextPrev(store.page++)">Next</button>
 
       </div>
 
@@ -64,7 +65,15 @@ export default {
     <!--Contenitore serie tv-->
     
     <div class="container my-4">
-      <h1 v-if="store.serieList.length>0" class="pb-3">Serie TV</h1>
+
+      <div v-if="store.serieList.length>0" class="d-flex align-items-center pb-3">
+        <h1>Serie TV</h1>
+
+        <button v-if="store.page > 1" type="button" class="nv_btn ms-3" @click="nextPrev(store.page--)">Prev</button>
+        <button type="button" class="nv_btn mx-3" @click="nextPrev(store.page++)">Next</button>
+
+      </div>
+
 
       <div class="card_container d-flex flex-wrap">
 
@@ -93,8 +102,21 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../scss/general/variables' as *;
 .nv_main_container{
   margin-top: 120px;
+}
+.nv_btn{
+  padding: 2px 5px;
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  color: $primary-color;
+  text-transform: uppercase;
+  &:hover{
+    background-color: white;
+    color: black;
+  }
 }
 .not_found{
   margin-top: 120px;

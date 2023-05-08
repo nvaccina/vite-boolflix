@@ -12,7 +12,7 @@ export const store = reactive ({
 
   filmList: [],
   serieList: [],
-  choseFilm: [],
+  titleList: '',
   titleToSearch: '',
   type: '',
   isLoading: true,
