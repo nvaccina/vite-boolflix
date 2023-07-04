@@ -151,7 +151,7 @@ export default {
   }
   .descrizione{
     height: 100%;
-    //max-height: 250px;
+    max-height: 300px;
     overflow-y: auto;
     &::-webkit-scrollbar{
       width: 5px;
